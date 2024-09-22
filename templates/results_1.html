@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Analysis Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>오늘의 기분은..</h1>
+
+    {% for i, question in enumerate(questions) %}
+    <div>
+        <h2>{{ question }}</h2>
+        <p><strong>Your Answer:</strong> {{ responses[i] }}</p>
+        <p><strong>Emotion Analysis:</strong></p>
+        <img src="{{ url_for('static', filename=graph_filenames[i]) }}" alt="Emotion Analysis Graph">
+    </div>
+    {% endfor %}
+
+    <div>
+        <h2>Model Confidence (Entropy) Across Questions</h2>
+        <img src="{{ url_for('static', filename=entropy_graph_filename) }}" alt="Entropy Graph">
+    </div>
+
+</body>
+</html>

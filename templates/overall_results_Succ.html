@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overall Emotion Analysis Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Overall Emotion Analysis Results</h1>
+    <ul>
+        {% for emotion, value in emotion_dict.items() %}
+            <li>{{ emotion }}: {{ '%.2f' % value }}</li>
+        {% endfor %}
+    </ul>
+    <img src="{{ url_for('static', filename=graph_filename) }}" alt="Overall Emotion Graph"><br><br>
+    <a href="{{ url_for('index') }}">Go back</a>
+</body>
+</html>

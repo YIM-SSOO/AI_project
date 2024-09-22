@@ -1,0 +1,17 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Analysis Survey</title>
+    <link rel="stylesheet" href="/static/style.css"></head><body>
+    <div class="container">
+        <h1>오늘의 기분은..</h1>
+        <form method="POST">
+            {% for i, question in enumerate(questions) %}
+                <div class="question">
+                    <label for="response_{{ i }}">{{ question }}</label>
+                    <textarea id="response_{{ i }}" name="response_{{ i }}" rows="4" maxlength="1000" required></textarea>
+                </div>
+            {% endfor %}
+            <button type="submit" class="button">Submit</button>
+        </form>
+    </div></body></html>

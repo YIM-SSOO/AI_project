@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Emotion Analysis Results</title>
+</head>
+<body>
+    <h1>오늘의 기분은..</h1>
+    <h2>종합 감정 분석 결과:</h2>
+    <img src="{{ url_for('static', filename=graph_filename) }}" alt="Emotion Analysis Graph">
+
+    <h2>질문별 답변:</h2>
+    <ul>
+        {% for i, response in enumerate(responses) %}
+            <li>{{ questions[i] }}: {{ response }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Analysis Results</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
+        :root {
+            --background-color: #EDE7F6;
+            --primary-color: #FF6F61;
+            --primary-color-hover: #E55A4F;
+            --secondary-color: #333;
+            --font-family: 'Noto Sans KR', sans-serif;
+            --font-size-body: 18px;
+            --font-size-heading: 26px;
+            --line-height-body: 1.6;
+            --progress-bar-height: 18px;
+            --progress-bar-bg: #e0e0e0;
+            --summary-bg-color: #FFF5F7;
+            --summary-border-color: #FFB6C1;
+            --container-padding: 20px;
+            --container-max-width: 500px;
+            --emotion-label-width: 80px;
+            --emotion-spacing: 12px;
+            --emotion-image-width: 180px; /* 이미지 크기 조정 */
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--background-color);
+            color: var(--secondary-color);
+            margin: 0;
+            padding: 0;
+            line-height: var(--line-height-body);
+            font-size: var(--font-size-body);
+        }
+
+        .container {
+            max-width: var(--container-max-width);
+            margin: 40px auto;
+            padding: var(--container-padding);
+            background-color: #FFFFFF;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: var(--font-size-heading);
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+
+        .emotions {
+            margin-bottom: 20px;
+        }
+
+        .emotion {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--emotion-spacing);
+        }
+
+        .emotion span {
+            font-size: 18px;
+            width: var(--emotion-label-width);
+            text-align: right;
+            color: #555;
+            margin-right: 10px;
+        }
+
+        .progress-bar-container {
+            flex-grow: 1;
+            background-color: var(--progress-bar-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            max-width: 300px;
+        }
+
+        .progress-bar {
+            height: var(--progress-bar-height);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .emotion-anger .progress-bar { background-color: #FF6F61; }
+        .emotion-joy .progress-bar { background-color: #FFD700; }
+        .emotion-surprise .progress-bar { background-color: #957DFF; }
+        .emotion-fear .progress-bar { background-color: #FF9800; }
+        .emotion-sadness .progress-bar { background-color: #64B5F6; }
+        .emotion-disgust .progress-bar { background-color: #8BC34A; }
+
+        .summary {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: var(--summary-bg-color);
+            border-radius: 10px;
+            border: 1px solid var(--summary-border-color);
+            text-align: center;
+        }
+
+        .summary h2 {
+            margin: 0;
+            font-size: 22px;
+            color: var(--secondary-color);
+        }
+
+        .summary p {
+            font-size: 18px;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        .action {
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-color-hover);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+                margin: 20px auto;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            .emotion span {
+                width: 60px;
+                font-size: 16px;
+            }
+
+            .btn {
+                padding: 8px 16px;
+                font-size: 16px;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const progressBars = document.querySelectorAll(".progress-bar");
+            progressBars.forEach(function(bar) {
+                bar.style.width = bar.getAttribute("data-width") + "%";
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>오늘의 기분은..</h1>
+        <div class="emotions">
+            <img src="{{ url_for('static', filename='images/' + emotion_image) }}" alt="{{ dominant_emotion }}" style="width: var(--emotion-image-width); height: auto; margin-bottom: 20px;">
+            <div class="emotion emotion-anger">
+                <span>분노</span>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" data-width="{{ emotion_dict['분노'] }}"></div>
+                </div>
+            </div>
+            <div class="emotion emotion-joy">
+                <span>기쁨</span>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" data-width="{{ emotion_dict['기쁨'] }}"></div>
+                </div>
+            </div>
+            <div class="emotion emotion-surprise">
+                <span>당황</span>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" data-width="{{ emotion_dict['당황'] }}"></div>
+                </div>
+            </div>
+            <div class="emotion emotion-fear">
+                <span>불안</span>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" data-width="{{ emotion_dict['불안'] }}"></div>
+                </div>
+            </div>
+            <div class="emotion emotion-sadness">
+                <span>슬픔</span>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" data-width="{{ emotion_dict['슬픔'] }}"></div>
+                </div>
+            </div>
+            <div class="emotion emotion-disgust">
+                <span>상처</span>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" data-width="{{ emotion_dict['상처'] }}"></div>
+                </div>
+            </div>
+        </div>
+        <div class="summary">
+            <h2>최종 감정 분석</h2>
+            <p>{{ emotion_message|safe }}</p>
+        </div>
+        <div class="action">
+            <a href="{{ url_for('index') }}" class="btn">다시 분석하기</a>
+        </div>
+    </div>
+</body>
+</html>

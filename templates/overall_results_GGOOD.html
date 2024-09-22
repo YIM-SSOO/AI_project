@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Analysis Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>오늘의 기분은..</h1>
+        <div class="emotions">
+            <img src="{{ url_for('static', filename='images/' + emotion_image) }}" alt="{{ dominant_emotion }}" style="width:200px;height:auto;">
+            <div class="emotion">
+                <span>화가 나요</span>
+                <div class="progress-bar" style="width: {{ emotion_dict['분노'] }}%; background-color: #FF6F61;"></div>
+            </div>
+            <div class="emotion">
+                <span>슬퍼요</span>
+                <div class="progress-bar" style="width: {{ emotion_dict['슬픔'] }}%; background-color: #6A8DFF;"></div>
+            </div>
+            <div class="emotion">
+                <span>우울해요</span>
+                <div class="progress-bar" style="width: {{ emotion_dict['당황'] }}%; background-color: #957DFF;"></div>
+            </div>
+            <div class="emotion">
+                <span>기뻐요</span>
+                <div class="progress-bar" style="width: {{ emotion_dict['기쁨'] }}%; background-color: #8FD14F;"></div>
+            </div>
+        </div>
+        <div class="summary">
+            <div class="summary-item">
+                <h2>종합 우울지수</h2>
+                <div class="progress-bar summary-bar" style="width: {{ emotion_dict['불안'] }}%; background-color: #6A8DFF;"></div>
+                <p>*휴식이 필요해요*</p>
+            </div>
+            <div class="summary-item">
+                <h2>종합 행복지수</h2>
+                <div class="progress-bar summary-bar" style="width: {{ emotion_dict['기쁨'] }}%; background-color: #8FD14F;"></div>
+                <p>*좋아하는 걸 해보는 건 어때요?*</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

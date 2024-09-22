@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Analysis Results</title>
+</head>
+<body>
+    <h1>Emotion Analysis Results</h1>
+    <p>분석 결과</p>
+    <p>총 입력된 문장 수: {{ sentences | length }}</p>
+
+    <ul>
+        {% for emotion, count in emotion_dict.items() %}
+            <li>{{ emotion }}: {{ count }}번</li>
+        {% endfor %}
+    </ul>
+
+    <p>가장 지배적인 감정: {{ max(emotion_dict, key=emotion_dict.get) }}</p>
+
+    <img src="{{ url_for('static', filename=graph_filename) }}" alt="Emotion Analysis Graph">
+
+    <a href="{{ url_for('index') }}">다시 분석하기</a>
+</body>
+</html>

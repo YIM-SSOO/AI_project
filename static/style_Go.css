@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FFF7E0;
+    color: #5C4033;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: #FF6F61;
+}
+
+h2 {
+    color: #FF6F61;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+.question-block {
+    margin-bottom: 20px;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 1px solid #FFCC99;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    background-color: #FF6F61;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #E65A50;
+}
+
+.question-result {
+    margin-top: 40px;
+}
+
+.question-result img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border: 1px solid #FFCC99;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+.progress-bar {
+    height: 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+    max-width: 100%;  /* 프로그레스 바의 최대 폭을 100%로 설정 */
+    overflow: hidden; /* 넘치는 내용을 숨김 */
+}

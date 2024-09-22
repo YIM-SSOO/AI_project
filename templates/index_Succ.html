@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Emotion Analysis</h1>
+    <form method="POST">
+        {% for i, question in enumerate(questions) %}
+            <label for="response_{{ i }}">{{ question }}</label><br>
+            <textarea id="response_{{ i }}" name="response_{{ i }}" rows="4" cols="50"></textarea><br><br>
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

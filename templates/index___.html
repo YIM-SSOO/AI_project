@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Emotion Analysis</title>
+    <style>
+        /* 필요한 스타일 추가 */
+    </style>
+</head>
+<body>
+    <h1>Emotion Analysis</h1>
+    <form method="POST" action="/">
+        <input type="text" name="sentence" placeholder="하고싶은 말을 입력해주세요" autofocus>
+        <input type="hidden" name="sentences" value="{{ '\n'.join(sentences) }}">
+        <button type="submit">입력</button>
+    </form>
+
+    {% if sentences %}
+        <ul>
+            {% for sentence in sentences %}
+                <li>{{ sentence }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="POST" action="/analyze">
+        <input type="hidden" name="sentences" value="{{ sentences }}">
+        <button type="submit">감정 분석</button>
+    </form>
+</body>
+</html>
